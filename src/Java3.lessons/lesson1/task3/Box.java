@@ -4,30 +4,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Box<T extends Fruit> {
-	private ArrayList<T> list;
+	private static final float RESIDUAL = 0.00001f;
+	private ArrayList<T> boxContent;
 
 	@SafeVarargs
 	public Box(T... arr) {
-		list = new ArrayList<>(Arrays.asList(arr));
+		boxContent = new ArrayList<>(Arrays.asList(arr));
 	}
 
 	public float getWeight() {
-		if (list.isEmpty()) return  0.0f;
-		return list.get(0).getWeight() * list.size();
+		if (boxContent.isEmpty()) return  0.0f;
+		return boxContent.get(0).getWeight() * boxContent.size();
 	}
 
 	public void addFruit(T fruit) {
-		list.add(fruit);
+		boxContent.add(fruit);
 	}
 
-	public boolean compare(Box another) {
-		return Math.abs(this.getWeight() - another.getWeight()) < 0.00001f;
+	public boolean compare(Box anotherBox) {
+		return Math.abs(this.getWeight() - anotherBox.getWeight()) < RESIDUAL;
 	}
 
 	//при пересыпании фруктов из коробки в коробку ограничим другую коробку только фруктами того же типа, чтобы избежать "смешивания" фруктов
-	public void shiftFruits(Box<? super T> another) {
-		another.list.addAll(this.list);
-		this.list.clear();
+	public void shiftFruits(Box<? super T> anotherBox) {
+		anotherBox.boxContent.addAll(this.boxContent);
+		this.boxContent.clear();
 	}
 
 }
