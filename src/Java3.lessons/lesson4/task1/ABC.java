@@ -14,7 +14,7 @@ public class ABC {
                             monitor.wait();
                         }
                         System.out.print("A");
-                        Thread.sleep(100);
+                        Thread.sleep(500);
                         currentChar = 'B';
                         monitor.notifyAll();
                     }
@@ -32,7 +32,7 @@ public class ABC {
                             monitor.wait();
                         }
                         System.out.print("B");
-                        Thread.sleep(100);
+                        Thread.sleep(400);
                         currentChar = 'C';
                         monitor.notifyAll();
                     }
