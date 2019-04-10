@@ -34,13 +34,15 @@ public class CheckOneAndFourTest {
     System.out.println("Инициализация");
   }
 
+  @After
+  public void endTest() {
+    System.out.println("Финализация");
+  }
+
   @Test
   public void doCheckOneAndFour() {
     Assert.assertEquals(true, checkOneAndFour.doCheckOneAndFour(a));
   }
 
-  @After
-  public void endTest() {
-    System.out.println("Финализация");
-  }
+
 }
