@@ -44,10 +44,10 @@ public class TestingClass {
             }
         }
         // вызываем каждый метод тестируемого класса с нужными нам аннотациями
-        for (Method o :list) {
+        for (Method o : list) {
             try {
-                o.invoke(null);
-            } catch (IllegalAccessException | InvocationTargetException e) {
+                o.invoke(c.newInstance());
+            } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
                 e.printStackTrace();
             }
         }
